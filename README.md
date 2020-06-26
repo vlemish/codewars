@@ -1,2 +1,2 @@
 # codewars
-Here is my solutions on some codewars tasks
+<p>me on <a href=https://www.codewars.com/users/MdmaSteel>codewars</a></p>
