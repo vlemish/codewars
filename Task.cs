@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -263,6 +264,85 @@ namespace CodeWarsSolutions
                 result += (int)Math.Pow(int.Parse(c.ToString()), temp.Length);
             }
             return result == value;
+        }
+
+        #endregion
+
+        #region https://www.codewars.com/kata/513e08acc600c94f01000001/
+
+        public static string Rgb(int r, int g, int b)
+        {
+
+            r = r < 0 ? 0 : r > 255 ? 255 : r;
+            g = g < 0 ? 0 : g > 255 ? 255 : g;
+            b = b < 0 ? 0 : b > 255 ? 255 : b;
+
+            string rStr = r < 15 && r > 0 ? "0" : null;
+            rStr+= ToHex(r, r == 0 ? "00" : null);
+            string gStr = g < 15 && g > 0 ? "0" : null;
+            gStr+= ToHex(g, g == 0 ? "00" : null);
+            string bStr = b < 15 && b > 0 ? "0" : null;
+            bStr += ToHex(b, b == 0 ? "00" : null);
+
+            return string.Join("", rStr, gStr, bStr);
+        }
+
+        public static string ToHex(int value, string hex=null)
+        {
+            if (value <= 0 && hex != null)
+            {
+                return string.Join("",hex.Reverse());
+            }
+
+            int divided   = value / 16;
+            int remainder = value % 16;
+
+
+            switch (remainder)
+            {
+                case 10:
+                    {
+                        hex += 'A';
+                        break;
+                    }
+
+                case 11:
+                    {
+                        hex += 'B';
+                        break;
+                    }
+
+                case 12:
+                    {
+                        hex += 'C';
+                        break;
+                    }
+
+                case 13:
+                    {
+                        hex += 'D';
+                        break;
+                    }
+
+                case 14:
+                    {
+                        hex += 'E';
+                        break;
+                    }
+
+                case 15:
+                    {
+                        hex += 'F';
+                        break;
+                    }
+                default:
+                    {
+                        hex += remainder;
+                        break;
+                    }
+            }
+
+            return ToHex(divided, hex);
         }
 
         #endregion
