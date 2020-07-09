@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,6 +10,99 @@ namespace CodeWarsSolutions
 {
     public abstract class Task
     {
+        #region https://www.codewars.com/kata/520b9d2ad5c005041100000f/
+        public static string PigIt(string str)
+        {
+            //var arr = str.Split(' ');
+            //List<string> newArr = new List<string>();
+            //foreach(var el in arr)
+            //{
+            //    var temp = el[0];
+            //    newArr.Add($"{el.Remove(0,1)}{temp}ay");
+            //}
+
+            ////Console.WriteLine(string.Join(" ", newArr));
+            //return string.Join(" ", newArr);
+
+            //with Linq 
+
+            return string.Join(" ", str.Split().Select(x => x.Substring(1) + x[0] + "ay"));
+        }
+
+
+        #endregion https://www.codewars.com/kata/520b9d2ad5c005041100000f/
+
+        #region https://www.codewars.com/kata/54da539698b8a2ad76000228/
+
+        public static bool IsValidWalk(string[] walk)
+        {
+            int countWest = 0;
+            int countNorth = 0;
+            int countSouth = 0;
+            int countEast = 0;
+
+            foreach (var w in walk)
+            {
+                switch (w)
+                {
+                    case "n":
+                        {
+                            countNorth++;
+                            break;
+                        }
+                    case "s":
+                        {
+                            countSouth++;
+                            break;
+                        }
+                    case "w":
+                        {
+                            countWest++;
+                            break;
+                        }
+                    case "e":
+                        {
+                            countEast++;
+                            break;
+                        }
+                }
+            }
+
+            bool isPoint = countNorth == countSouth && countWest == countEast;
+            bool isTakenTen = countWest + countNorth + countSouth + countEast == 10;
+
+            return isPoint && isTakenTen ? true : false;
+
+
+        }
+
+        #endregion
+
+        #region https://www.codewars.com/kata/54d512e62a5e54c96200019e/
+
+        public static String Factors(int lst)
+        {
+            int divider = 2;
+            int count = 0;
+            List<string> chars = new List<string>();
+            while (lst != 1)
+            {
+                if (lst % divider == 0)
+                {
+                    lst /= divider;
+                    count++;
+                    chars.Add(divider.ToString());
+                }
+                else
+                {
+                    divider++;
+                }
+            }
+
+            return string.Join("*", chars);
+        }
+
+        #endregion 
 
         #region https://www.codewars.com/kata/523f5d21c841566fde000009/
         public static int[] ArrayDiff(int[] a, int[] b)
@@ -394,6 +488,32 @@ namespace CodeWarsSolutions
 
         }
         #endregion
+
+        #region https://www.codewars.com/kata/54d512e62a5e54c96200019e/
+
+        //public static String Factors(int lst)
+        //{
+        //    int divider = 2;
+        //    int count = 0;
+        //    List<string> chars = new List<string>();
+        //    while (lst != 1)
+        //    {
+        //        if (lst % divider == 0)
+        //        {
+        //            lst /= divider;
+        //            count++;
+        //            chars.Add(divider.ToString());
+        //        }
+        //        else
+        //        {
+        //            divider++;
+        //        }
+        //    }
+
+        //    return string.Join("*", chars);
+        //}
+
+        #endregion 
 
         #region https://www.codewars.com/kata/5526fc09a1bbd946250002dc/
         public static int Find(int[] integers)
