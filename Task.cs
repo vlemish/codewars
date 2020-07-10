@@ -10,23 +10,44 @@ namespace CodeWarsSolutions
 {
     public abstract class Task
     {
+        #region https://www.codewars.com/kata/541c8630095125aba6000c00/
+        public static int DigitalRoot(long n)
+        {
+            int result=0;
+            string strN = n.ToString();
+
+            while (strN.Length != 1)
+            {
+                result = 0;
+                for(int i=0; i < strN.Length; i++)
+                {
+                    result +=int.Parse(strN[i].ToString());
+                }
+                strN = result.ToString();
+            }
+
+            return result;
+        }
+
+        public static int DigitalRoot(long n, string s) => (int) (1 + (n - 1) % 9);
+
+        #endregion https://www.codewars.com/kata/541c8630095125aba6000c00/
+
         #region https://www.codewars.com/kata/520b9d2ad5c005041100000f/
         public static string PigIt(string str)
         {
-            //var arr = str.Split(' ');
-            //List<string> newArr = new List<string>();
-            //foreach(var el in arr)
-            //{
-            //    var temp = el[0];
-            //    newArr.Add($"{el.Remove(0,1)}{temp}ay");
-            //}
+            var arr = str.Split(' ');
+            List<string> newArr = new List<string>();
+            foreach (var el in arr)
+            {
+                var temp = el[0];
+                newArr.Add($"{el.Remove(0, 1)}{temp}ay");
+            }
 
-            ////Console.WriteLine(string.Join(" ", newArr));
-            //return string.Join(" ", newArr);
+            return string.Join(" ", newArr);
 
             //with Linq 
-
-            return string.Join(" ", str.Split().Select(x => x.Substring(1) + x[0] + "ay"));
+            //return string.Join(" ", str.Split().Select(i => i.Substring(1) + i[0] + "ay"));
         }
 
 
