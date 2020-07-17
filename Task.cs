@@ -8,8 +8,53 @@ using System.Threading.Tasks;
 
 namespace CodeWarsSolutions
 {
+
     public abstract class Task
     {
+
+
+        #region https://www.codewars.com/kata/57eb8fcdf670e99d9b000272
+        public static string High(string s)
+        {
+            var splited = s.Split(' ');
+            var list = new List<int>();
+
+            foreach(var i in splited)
+            {
+                list.Add(LetterToInt(i));
+            }
+
+            return splited[list.IndexOf(list.Max())];
+
+            //Some bright guy did in the way i wanted to do...
+            //return s.Split(' ').OrderBy(a => a.Select(b => b - 96).Sum()).Last();
+        }
+
+        private static int LetterToInt(string s)
+        {
+            return s.Select(i => ((int)i-96)).Sum();
+        }
+
+        #endregion
+
+        #region https://www.codewars.com/kata/52597aa56021e91c93000cb0
+
+        public static int[] MoveZeroes(int[] arr)
+        {
+            var zeroes = arr.Where(i => i == 0).ToArray();
+            var notZeroes = arr.Where(i => i != 0).ToArray();
+
+            var rightSequance = new List<int>();
+            rightSequance.AddRange(notZeroes);
+            rightSequance.AddRange(zeroes);
+
+            return rightSequance.ToArray(); 
+
+      
+        }
+
+        #endregion
+
         #region https://www.codewars.com/kata/541c8630095125aba6000c00/
         public static int DigitalRoot(long n)
         {
@@ -1009,6 +1054,7 @@ namespace CodeWarsSolutions
             else { return -1; }
         }
         #endregion
+
 
     }
 }
