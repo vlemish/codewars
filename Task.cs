@@ -1,17 +1,98 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Globalization;
 using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
+using System.Runtime.Remoting.Messaging;
 
 namespace CodeWarsSolutions
 {
 
     public abstract class Task
     {
+        #region https://www.codewars.com/kata/537529f42993de0e0b00181f/
 
+        public static int CountInversions(int[] array, int count=0, int i=0)
+        {
+            if (array.Length <= i)
+            {
+                return count;
+            }
+
+            if(array[i] > array[i + 1])
+            {
+                count++;
+                int temp = array[i];
+                array[i] = array[i + 1];
+                array[i + 1] = temp;
+
+                return CountInversions(array, count, i+1);
+            }
+            return 0;
+        }
+
+        #endregion
+
+        #region
+        public delegate int SideSum(int[] array, int startIndex, int lastIndex);
+        public static int FindEvenIndex(int[] arr)
+        {
+
+            SideSum sideSum = (a, sIndex, lIndex) =>
+            {
+                int sum = 0;
+                for (int i = sIndex; i < lIndex; i++)
+                {
+                    sum += a[i];
+                }
+
+                return sum;
+            };
+
+
+            for (int i = 0; i < arr.Length; i++)
+            {
+                int left = i == 0 ? 0 : sideSum(arr, 0, i);
+
+                int startWith = i + 1 > arr.Length ? arr.Length : i + 1;
+                int right = sideSum(arr, startWith, arr.Length);
+
+                if (left == right)
+                {
+                    return i;
+                }
+            }
+
+            return -1;
+        }
+        #endregion
+
+        #region https://www.codewars.com/kata/576757b1df89ecf5bd00073b/
+
+        public static String LongestConsec(string[] strarr, int k)
+        {
+            if (strarr.Length == 0 || k <= 0)
+            {
+                return string.Empty;
+            }
+
+            if (k == 1)
+            {
+                return strarr.OrderBy(o => o.Length).Last();
+            }
+
+            List<string> strings = new List<string>();
+
+            for (int i=0; i < strarr.Length+1 / k; i++)
+            {
+                strings.Add($"{strarr[i]}{strarr[i + 1]}");
+            }
+
+            return strings.OrderBy(o => o.Length).Last();
+        }
+
+
+        #endregion
 
         #region https://www.codewars.com/kata/57eb8fcdf670e99d9b000272
         public static string High(string s)
