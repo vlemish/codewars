@@ -10,30 +10,41 @@ namespace CodeWarsSolutions
 
     public abstract class Task
     {
-        #region https://www.codewars.com/kata/537529f42993de0e0b00181f/
+        #region https://www.codewars.com/kata/54bf1c2cd5b56cc47f0007a1/
 
-        public static int CountInversions(int[] array, int count=0, int i=0)
+        public static int DuplicateCount(string str)
+        {
+
+            return str.ToLower().GroupBy(g => g).Where(s => s.Count() > 1).Select(s => s).Count();
+
+        }
+
+            #endregion
+
+            #region https://www.codewars.com/kata/537529f42993de0e0b00181f/
+
+            public static int CountInversions(int[] array, int count = 0, int i = 0)
         {
             if (array.Length <= i)
             {
                 return count;
             }
 
-            if(array[i] > array[i + 1])
+            if (array[i] > array[i + 1])
             {
                 count++;
                 int temp = array[i];
                 array[i] = array[i + 1];
                 array[i + 1] = temp;
 
-                return CountInversions(array, count, i+1);
+                return CountInversions(array, count, i + 1);
             }
             return 0;
         }
 
         #endregion
 
-        #region
+        #region https://www.codewars.com/kata/5679aa472b8f57fb8c000047
         public delegate int SideSum(int[] array, int startIndex, int lastIndex);
         public static int FindEvenIndex(int[] arr)
         {
