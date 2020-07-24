@@ -12,16 +12,11 @@ namespace CodeWarsSolutions
     {
         #region https://www.codewars.com/kata/54bf1c2cd5b56cc47f0007a1/
 
-        public static int DuplicateCount(string str)
-        {
-
-            return str.ToLower().GroupBy(g => g).Where(s => s.Count() > 1).Select(s => s).Count();
-
-        }
+        public static int DuplicateCount(string str)=> str.ToLower().GroupBy(g => g).Where(s => s.Count() > 1).Select(s => s).Count();
 
             #endregion
 
-            #region https://www.codewars.com/kata/537529f42993de0e0b00181f/
+        #region https://www.codewars.com/kata/537529f42993de0e0b00181f/
 
             public static int CountInversions(int[] array, int count = 0, int i = 0)
         {
