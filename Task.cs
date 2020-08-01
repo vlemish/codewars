@@ -10,34 +10,40 @@ namespace CodeWarsSolutions
 
     public abstract class Task
     {
+        #region https://www.codewars.com/kata/51f2d1cafc9c0f745c00037d/
+
+        public static bool Solution(string str, string ending)
+        {
+
+            //if (str.Length < ending.Length) { return false; }
+
+            //int index = 0;
+            //for (int i = str.Length - ending.Length; i < str.Length; i++)
+            //{
+            //    char first = str[i];
+            //    char second = ending[index];
+            //    index++;
+            //    if (first != second)
+            //    {
+            //        return false;
+            //    }
+            //}
+
+            //return true;
+
+
+            //with string internal methods;
+
+            return str.Length < ending.Length ? false : str.Substring(str.Length - ending.Length).Contains(ending);
+        }
+
+        #endregion
+
         #region https://www.codewars.com/kata/54bf1c2cd5b56cc47f0007a1/
 
         public static int DuplicateCount(string str)=> str.ToLower().GroupBy(g => g).Where(s => s.Count() > 1).Select(s => s).Count();
 
             #endregion
-
-        #region https://www.codewars.com/kata/537529f42993de0e0b00181f/
-
-            public static int CountInversions(int[] array, int count = 0, int i = 0)
-        {
-            if (array.Length <= i)
-            {
-                return count;
-            }
-
-            if (array[i] > array[i + 1])
-            {
-                count++;
-                int temp = array[i];
-                array[i] = array[i + 1];
-                array[i + 1] = temp;
-
-                return CountInversions(array, count, i + 1);
-            }
-            return 0;
-        }
-
-        #endregion
 
         #region https://www.codewars.com/kata/5679aa472b8f57fb8c000047
         public delegate int SideSum(int[] array, int startIndex, int lastIndex);
