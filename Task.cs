@@ -10,6 +10,41 @@ namespace CodeWarsSolutions
 
     public abstract class Task
     {
+
+        #region https://www.codewars.com/kata/514b92a657cdc65150000006/
+        public static int Solution(int value)
+        {
+            //int sum = 0;
+            //for (int i = 3; i < value; i++)
+            //{
+            //    if (i % 3 == 0 && i % 5 == 0)
+            //    {
+            //        sum += i;
+            //    }
+            //    else
+            //    {
+
+            //        if (i % 3 == 0)
+            //        {
+            //            sum += i;
+            //        }
+
+            //        if (i % 5 == 0)
+            //        {
+            //            sum += i;
+            //        }
+            //    }
+            //}
+            //return sum;
+
+
+            ////LINQ (not mine)
+            return Enumerable.Range(0, value)
+                 .Where(x => x % 3 == 0 || x % 5 == 0)
+                 .Sum();
+        }
+
+        #endregion
         #region https://www.codewars.com/kata/51f2d1cafc9c0f745c00037d/
 
         public static bool Solution(string str, string ending)
