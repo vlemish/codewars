@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 using System.Data;
 using System.Globalization;
 using System.Linq;
@@ -10,41 +11,67 @@ namespace CodeWarsSolutions
 
     public abstract class Task
     {
+        #region https://www.codewars.com/kata/59c01248bf10a47bd1000046/
+        public static string validator(string password)
+        {
+            if(password.Length<3 || password.Length > 20)
+            {
+                return "INVALID";
+            }
+
+            var isValid = password.All(i => Char.IsLetterOrDigit(i));
+
+            if (isValid)
+            {
+                return (password.Where(i => char.IsLetter(i)).Count() > 0 && password.Where(i => char.IsNumber(i)).Count() > 0) ? "VALID" : "INVALID";
+            }
+
+            return "INVALID";
+        }
+
+        #endregion
+
+
+        #region https://www.codewars.com/kata/554ca54ffa7d91b236000023/
+        public static int CountBits(int n) => Convert.ToString(n,2).Where(i => i == '1').Count();
+
+        #endregion
 
         #region https://www.codewars.com/kata/514b92a657cdc65150000006/
         public static int Solution(int value)
         {
-            //int sum = 0;
-            //for (int i = 3; i < value; i++)
-            //{
-            //    if (i % 3 == 0 && i % 5 == 0)
-            //    {
-            //        sum += i;
-            //    }
-            //    else
-            //    {
+            int sum = 0;
+            for (int i = 3; i < value; i++)
+            {
+                if (i % 3 == 0 && i % 5 == 0)
+                {
+                    sum += i;
+                }
+                else
+                {
 
-            //        if (i % 3 == 0)
-            //        {
-            //            sum += i;
-            //        }
+                    if (i % 3 == 0)
+                    {
+                        sum += i;
+                    }
 
-            //        if (i % 5 == 0)
-            //        {
-            //            sum += i;
-            //        }
-            //    }
-            //}
-            //return sum;
+                    if (i % 5 == 0)
+                    {
+                        sum += i;
+                    }
+                }
+            }
+            return sum;
 
 
             ////LINQ (not mine)
-            return Enumerable.Range(0, value)
-                 .Where(x => x % 3 == 0 || x % 5 == 0)
-                 .Sum();
+            //return Enumerable.Range(0, value)
+            //     .Where(x => x % 3 == 0 || x % 5 == 0)
+            //     .Sum();
         }
 
         #endregion
+        
         #region https://www.codewars.com/kata/51f2d1cafc9c0f745c00037d/
 
         public static bool Solution(string str, string ending)
