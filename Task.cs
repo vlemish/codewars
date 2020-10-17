@@ -11,6 +11,46 @@ namespace CodeWarsSolutions
 
     public abstract class Task
     {
+        #region https://www.codewars.com/kata/5514e5b77e6b2f38e0000ca9/
+        public static int[] UpArray(int[] num)
+        {
+            if (num.Length < 1 || num.Where(n => n < 0 || n > 10).Count() > 0)
+            {
+                return null;
+            }
+
+            return IncreaseByOne(num.Length - 1, num);
+        }
+
+        private static int[] IncreaseByOne(int i, int[] num)
+        {
+            if (num[i] > 8 && i == 0)
+            {
+                var newArr = new int[num.Length + 1];
+                newArr[0] = 1;
+                num[i] = 0;
+                for (int j = 1; j < newArr.Length; j++)
+                {
+                    newArr[j] = num[j - 1];
+                }
+
+                return newArr;
+            }
+
+            else if (num[i] > 8)
+            {
+                num[i] = 0;
+                return IncreaseByOne(i - 1, num);
+            }
+
+            else
+            {
+                num[i] += 1;
+                return num;
+            }
+        }
+        #endregion
+
         #region https://www.codewars.com/kata/59c01248bf10a47bd1000046/
         public static string validator(string password)
         {
@@ -30,7 +70,6 @@ namespace CodeWarsSolutions
         }
 
         #endregion
-
 
         #region https://www.codewars.com/kata/554ca54ffa7d91b236000023/
         public static int CountBits(int n) => Convert.ToString(n,2).Where(i => i == '1').Count();
