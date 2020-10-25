@@ -11,6 +11,42 @@ namespace CodeWarsSolutions
 
     public abstract class Task
     {
+        #region https://www.codewars.com/kata/5ce399e0047a45001c853c2b/
+        public static int[] PartsSums(int[] ls)
+        {
+            if (ls.Length < 1)
+            {
+                return new int[] { 0 };
+            }
+
+            var partsSUm = new int[ls.Length + 1];
+
+            int fullSum = CalculateSum(ls, 0);
+
+            partsSUm[0] = fullSum;
+            var temp = 0;
+
+            for (int i = 0; i < ls.Length; i++)
+            {
+                temp += ls[i];
+                partsSUm[i + 1] = fullSum - temp;
+            }
+
+            return partsSUm;
+        }
+
+        private static int CalculateSum(int[] arr, int startPoint)
+        {
+            int sum = 0;
+            while (startPoint < arr.Length)
+            {
+                sum += arr[startPoint];
+                startPoint++;
+            }
+
+            return sum;
+        }
+        #endregion
         #region https://www.codewars.com/kata/5514e5b77e6b2f38e0000ca9/
         public static int[] UpArray(int[] num)
         {
