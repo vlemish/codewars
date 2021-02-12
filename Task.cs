@@ -11,81 +11,28 @@ namespace CodeWarsSolutions
 
     public abstract class Task
     {
-        #region https://www.codewars.com/kata/5ce399e0047a45001c853c2b/
-        public static int[] PartsSums(int[] ls)
+        #region https://www.codewars.com/kata/5592e3bd57b64d00f3000047/train/csharp
+        public static long FindNb(long m)
         {
-            if (ls.Length < 1)
+            long sum = 0;
+            long i = 1;
+            long above = 0;
+
+            while (sum < m)
             {
-                return new int[] { 0 };
+                i++;
+                sum = 0;
+                above += (long)Math.Pow(i - 1, 3);
+                sum = above + (long)Math.Pow(i, 3);
             }
 
-            var partsSUm = new int[ls.Length + 1];
-
-            int fullSum = CalculateSum(ls, 0);
-
-            partsSUm[0] = fullSum;
-            var temp = 0;
-
-            for (int i = 0; i < ls.Length; i++)
-            {
-                temp += ls[i];
-                partsSUm[i + 1] = fullSum - temp;
-            }
-
-            return partsSUm;
+            return sum == m
+                ? i
+                : -1;
         }
 
-        private static int CalculateSum(int[] arr, int startPoint)
-        {
-            int sum = 0;
-            while (startPoint < arr.Length)
-            {
-                sum += arr[startPoint];
-                startPoint++;
-            }
-
-            return sum;
-        }
         #endregion
-        #region https://www.codewars.com/kata/5514e5b77e6b2f38e0000ca9/
-        public static int[] UpArray(int[] num)
-        {
-            if (num.Length < 1 || num.Where(n => n < 0 || n > 10).Count() > 0)
-            {
-                return null;
-            }
 
-            return IncreaseByOne(num.Length - 1, num);
-        }
-
-        private static int[] IncreaseByOne(int i, int[] num)
-        {
-            if (num[i] > 8 && i == 0)
-            {
-                var newArr = new int[num.Length + 1];
-                newArr[0] = 1;
-                num[i] = 0;
-                for (int j = 1; j < newArr.Length; j++)
-                {
-                    newArr[j] = num[j - 1];
-                }
-
-                return newArr;
-            }
-
-            else if (num[i] > 8)
-            {
-                num[i] = 0;
-                return IncreaseByOne(i - 1, num);
-            }
-
-            else
-            {
-                num[i] += 1;
-                return num;
-            }
-        }
-        #endregion
 
         #region https://www.codewars.com/kata/59c01248bf10a47bd1000046/
         public static string validator(string password)
@@ -106,6 +53,7 @@ namespace CodeWarsSolutions
         }
 
         #endregion
+
 
         #region https://www.codewars.com/kata/554ca54ffa7d91b236000023/
         public static int CountBits(int n) => Convert.ToString(n,2).Where(i => i == '1').Count();
